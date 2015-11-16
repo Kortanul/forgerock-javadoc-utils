@@ -48,7 +48,7 @@ public class SupportedAPIDoclet extends Standard {
 
     private static final String SUPPORTED_ALL_API = "supported.all.api";
     private static final String SUPPORTED_API = "supported.api";
-    private static Set includeAll = new HashSet();
+    private static Set<String> includeAll = new HashSet<String>();
 
     public static void main(String[] args) {
         String name = SupportedAPIDoclet.class.getName();
@@ -107,18 +107,18 @@ public class SupportedAPIDoclet extends Standard {
         return includeMe;
     }
  
-    private static Object process(Object obj, Class expect) {
+    private static Object process(Object obj, Class<?> expect) {
         Object retObj = obj;
 
         if (obj != null) {
-            Class cls = obj.getClass();
+            Class<?> cls = obj.getClass();
             if (cls.getName().startsWith("com.sun.tools.") && !ParameterizedType.class.isAssignableFrom(cls)) {
                 retObj = Proxy.newProxyInstance(cls.getClassLoader(), cls.getInterfaces(), new StandardHandler(obj));
             } else if (obj instanceof Object[]) {
-                Class componentType = expect.getComponentType();
+                Class<?> componentType = expect.getComponentType();
                 Object[] array = (Object[]) obj;
                 setIncludeAll(array);
-                List list = new ArrayList(array.length);
+                List<Object> list = new ArrayList<Object>(array.length);
 
                 for (Object entry : array) {
                     //Only continue recursion for "interesting" items
