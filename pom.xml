@@ -47,6 +47,13 @@
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
+
+    <scm>
+       <connection>scm:git:ssh://git@stash.forgerock.org:7999/openam/javadoc-utils.git</connection>
+       <developerConnection>scm:git:ssh://git@stash.forgerock.org:7999/openam/javadoc-utils.git</developerConnection>
+       <url>https://stash.forgerock.org/projects/OPENAM/repos/javadoc-utils/browse</url>
+    </scm>
+
     <repositories>
         <repository>
             <id>forgerock-staging-repository</id>
